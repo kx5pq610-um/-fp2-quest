@@ -1,31 +1,258 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>FP2 Quest</title><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;background:#f4f7fb;color:#172033}.app{max-width:680px;margin:auto;padding:0 16px 90px}.hero{background:#173b8f;color:white;margin:0 -16px 18px;padding:24px 20px;border-radius:0 0 24px 24px}.hero h1{margin:0}.hero p{opacity:.88;margin:6px 0 0}.card,.btn{background:white;border-radius:16px;box-shadow:0 4px 16px #0001}.card{padding:16px;margin:12px 0}.btn{width:100%;border:0;padding:15px;margin:6px 0;text-align:left;font-size:16px;font-weight:700;color:#172033}.primary{background:#2563eb;color:white;text-align:center}.accent{background:#eef2ff}.danger{background:#fff1f2}.muted{color:#64748b;font-size:13px}.choice{display:block;width:100%;padding:14px;margin:8px 0;border:2px solid #e2e8f0;border-radius:12px;background:white;text-align:left;font-size:16px}.answerInput{display:block;width:100%;padding:15px;margin:12px 0;border:2px solid #cbd5e1;border-radius:12px;background:white;font-size:18px}.good{border-color:#22c55e;background:#f0fdf4}.bad{border-color:#ef4444;background:#fef2f2}.bar{height:9px;background:#e2e8f0;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:#2563eb}.row{display:flex;gap:10px}.row>*{flex:1}.pill{display:inline-block;font-size:12px;background:#eef2ff;color:#3730a3;border-radius:999px;padding:4px 8px}.section{font-weight:800;margin:22px 2px 8px}.back{border:0;background:white;border-radius:10px;padding:10px}.head{display:flex;gap:10px;align-items:center}.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(680px,100%);display:flex;background:#fffffff2;border-top:1px solid #e2e8f0;padding:10px}.nav button{flex:1;border:0;background:none;font-size:12px;color:#64748b}.ok{color:#15803d;font-weight:800}.warn{color:#b45309;font-weight:800}.mode{border-left:5px solid #2563eb}.tag{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:#f1f5f9;color:#475569;margin-bottom:8px}.score{font-size:38px;font-weight:900}.unsureOn{border-color:#f59e0b;background:#fffbeb}</style></head><body><main id="app" class="app"><div class="hero"><h1>FP2 Quest</h1><p>読み込み中...</p></div><div class="card">問題データを確認しています。</div></main>
-<script src="questions-extra.js?v=27"></script><script src="questions-pack2.js?v=27"></script><script src="questions-pack3.js?v=27"></script><script src="questions-pack4.js?v=27"></script><script src="questions-pack5.js?v=27"></script><script src="questions-pack6.js?v=27"></script><script src="questions-pack7.js?v=27"></script><script src="questions-pack8.js?v=27"></script><script src="questions-pack9.js?v=27"></script><script src="questions-pack10.js?v=27"></script><script src="questions-pack11.js?v=27"></script><script src="questions-pack12.js?v=27"></script><script>extraQuestions8.push(...extraQuestions9,...extraQuestions10,...extraQuestions11,...extraQuestions12);</script><script src="questions-pack13.js?v=27"></script><script src="questions-pack14.js?v=27"></script><script src="questions-pack15.js?v=27"></script>
-<script>(function(){var app=document.getElementById('app');try{
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173b8f">
+<title>FP2 Quest</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;color:#172033;background:#f4f7fb}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb}.app{max-width:680px;margin:auto;min-height:100vh;padding:0 14px 96px}
+.hero{background:linear-gradient(145deg,#132b68,#2454c6);color:#fff;margin:0 -14px 14px;padding:22px 18px 18px;border-radius:0 0 26px 26px;box-shadow:0 10px 30px #173b8f25}
+.heroTop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.hero h1{margin:0;font-size:28px;letter-spacing:.2px}.heroSub{opacity:.9;margin:5px 0 14px;font-size:14px}
+.heroStats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.heroStat{background:#ffffff18;border:1px solid #ffffff24;border-radius:14px;padding:9px;text-align:center}.heroStat b{display:block;font-size:18px}.heroStat span{font-size:11px;opacity:.88}
+.card,.btn{background:#fff;border-radius:18px;box-shadow:0 5px 18px #0f172a0c}.card{padding:16px;margin:11px 0}.btn{width:100%;border:0;padding:15px;margin:6px 0;text-align:left;font-size:16px;font-weight:750;color:#172033}
+.btn:active{transform:scale(.992)}.primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;text-align:center;box-shadow:0 8px 20px #2563eb30}.secondary{background:#eef4ff;color:#1e40af}.soft{background:#f8fafc}
+.cta{padding:18px;border-radius:20px}.ctaTitle{font-size:19px;font-weight:850}.ctaSub{font-size:12px;opacity:.85;margin-top:4px}
+.muted{color:#64748b;font-size:13px}.tiny{font-size:11px;color:#64748b}.section{font-weight:850;margin:22px 3px 8px;font-size:16px}.section small{font-weight:500;color:#64748b}
+.row{display:flex;gap:10px}.row>*{flex:1}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.bar{height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#60a5fa);border-radius:999px}
+.goal{background:linear-gradient(145deg,#fff,#f0f6ff);border:1px solid #dbeafe}.goalTop{display:flex;justify-content:space-between;align-items:center;gap:12px}.goalNum{font-size:34px;font-weight:900;color:#1d4ed8}.goalBadge{padding:7px 10px;border-radius:999px;background:#dbeafe;color:#1e40af;font-size:12px;font-weight:800}
+.celebrate{background:linear-gradient(145deg,#fff7ed,#fffbeb);border:1px solid #fde68a}.celebrate .big{font-size:26px;font-weight:900}
+.mode{border-left:5px solid #2563eb}.mode.calc{border-left-color:#7c3aed}.mode.exam{border-left-color:#ea580c}
+.pill{display:inline-block;font-size:11px;background:#eef2ff;color:#3730a3;border-radius:999px;padding:4px 8px;margin-right:4px}.status{font-size:11px;border-radius:999px;padding:4px 8px;background:#f1f5f9;color:#475569}
+.head{display:flex;align-items:center;gap:10px;margin:4px 0 12px}.back{border:0;background:#fff;border-radius:11px;padding:10px 12px;box-shadow:0 3px 12px #0f172a10;font-size:18px}.head h2{margin:0;font-size:20px}
+.choice{display:block;width:100%;padding:15px;margin:9px 0;border:2px solid #e2e8f0;border-radius:14px;background:#fff;text-align:left;font-size:16px;line-height:1.45}.good{border-color:#22c55e;background:#f0fdf4}.bad{border-color:#ef4444;background:#fef2f2}.reviewOn{border-color:#f59e0b;background:#fffbeb}
+.qtext{font-size:20px;line-height:1.62;font-weight:780;margin:8px 0 14px}.tag{display:inline-block;font-size:11px;padding:4px 8px;border-radius:999px;background:#f1f5f9;color:#475569;margin:0 4px 7px 0}
+.feedback{margin-top:12px;padding:14px;border-radius:15px;background:#f8fafc}.feedback b{font-size:18px}
+.nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(680px,100%);display:flex;background:#fffffff4;backdrop-filter:blur(14px);border-top:1px solid #e2e8f0;padding:8px 10px calc(8px + env(safe-area-inset-bottom));z-index:9}.nav button{flex:1;border:0;background:none;font-size:12px;color:#64748b;padding:5px 0}
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}.roadStep{padding:9px 4px;border-radius:12px;background:#f1f5f9;text-align:center;font-size:10px;color:#64748b}.roadStep.done{background:#dcfce7;color:#166534;font-weight:800}.roadStep b{display:block;font-size:15px;margin-bottom:2px}
+.domainMeta{display:flex;justify-content:space-between;gap:8px;align-items:center}.domainMeta .muted{text-align:right}
+.score{font-size:42px;font-weight:950;letter-spacing:-1px}.ok{color:#15803d;font-weight:850}.warn{color:#b45309;font-weight:850}
+@media(max-width:380px){.heroStat b{font-size:16px}.heroStat span{font-size:10px}.qtext{font-size:19px}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main id="app" class="app"><div class="hero"><h1>FP2 Quest</h1><p class="heroSub">読み込み中...</p></div><div class="card">問題データを確認しています。</div></main>
+
+<script src="questions-extra.js?v=28"></script>
+<script src="questions-pack2.js?v=28"></script>
+<script src="questions-pack3.js?v=28"></script>
+<script src="questions-pack4.js?v=28"></script>
+<script src="questions-pack5.js?v=28"></script>
+<script src="questions-pack6.js?v=28"></script>
+<script src="questions-pack7.js?v=28"></script>
+<script src="questions-pack8.js?v=28"></script>
+<script src="questions-pack9.js?v=28"></script>
+<script src="questions-pack10.js?v=28"></script>
+<script src="questions-pack11.js?v=28"></script>
+<script src="questions-pack12.js?v=28"></script>
+<script>extraQuestions8.push.apply(extraQuestions8,extraQuestions9.concat(extraQuestions10,extraQuestions11,extraQuestions12));</script>
+<script src="questions-pack13.js?v=28"></script>
+<script src="questions-pack14.js?v=28"></script>
+
+<script>
+(function(){
+var app=document.getElementById('app');
+try{
 var core=[{id:'A05-001',d:'A',s:4,q:'老齢基礎年金の受給開始年齢は、原則として何歳か。',c:['60歳','62歳','65歳','70歳'],a:2,e:'老齢基礎年金は原則65歳から受給します。',k:'公的年金',law:'2026-04-01'}];
-var all=core.concat(extraQuestions,extraQuestions2,extraQuestions3,extraQuestions4,extraQuestions5,extraQuestions6,extraQuestions7,extraQuestions8,extraQuestions15),seen={},questions=all.filter(function(q){if(!q||!q.id||seen[q.id])return false;seen[q.id]=1;return true});
+var all=core.concat(extraQuestions,extraQuestions2,extraQuestions3,extraQuestions4,extraQuestions5,extraQuestions6,extraQuestions7,extraQuestions8);
+var seen={},questions=[],i;
+for(i=0;i<all.length;i++){var qq=all[i];if(qq&&qq.id&&!seen[qq.id]&&!qq.input){seen[qq.id]=1;questions.push(qq)}}
+
 var names={A:'ライフプランニングと資金計画',B:'リスク管理',C:'金融資産運用',D:'タックスプランニング',E:'不動産',F:'相続・事業承継'};
-var subs={A:['FPと倫理','FPと関連法規','ライフプランニングの考え方・手法','社会保険','公的年金','企業年金・個人年金等','年金と税金','ライフプラン策定上の資金計画','中小法人の資金計画','ローンとカード','最新の動向'],B:['リスクマネジメント','保険制度全般','生命保険','損害保険','第三分野の保険','リスク管理と保険','最新の動向'],C:['マーケット環境の理解','預貯金・金融類似商品等','投資信託','債券投資','株式投資','外貨建商品','保険商品','金融派生商品','ポートフォリオ運用','金融商品と税金','セーフティネット','関連法規','最新の動向'],D:['わが国の税制','所得税の仕組み','各種所得の内容','損益通算','所得控除','税額控除','所得税の申告と納付','個人住民税','個人事業税','法人税','法人住民税','法人事業税','消費税','会社・役員間および会社間の税務','決算書と法人税申告書','諸外国の税制度','最新の動向'],E:['不動産の見方','不動産の取引','不動産に関する法令上の規制','不動産の取得・保有に係る税金','不動産の譲渡に係る税金','不動産の賃貸','不動産の有効活用','不動産の証券化','最新の動向'],F:['贈与と法律','贈与と税金','相続と法律','相続と税金','相続財産の評価（不動産以外）','相続財産の評価（不動産）','不動産の相続対策','相続と保険の活用','事業承継対策','事業と経営','最新の動向']};
-var S={answers:{},last:null,mocks:[]};try{var old=JSON.parse(localStorage.getItem('fp2q')||'{}');if(old&&old.answers)S.answers=old.answers;if(old&&old.last)S.last=old.last;if(old&&old.mocks)S.mocks=old.mocks}catch(e){}
-function save(){try{localStorage.setItem('fp2q',JSON.stringify(S))}catch(e){}}function A(q){return S.answers[q.id]}function stat(qs){var d=0,o=0;for(var i=0;i<qs.length;i++){var a=A(qs[i]);if(a){d++;if(a.ok)o++}}return{done:d,total:qs.length,rate:d?Math.round(o/d*100):0}}function pad2(n){return n<9?'0'+(n+1):String(n+1)}
-function isPractical(q){return !!q.input}function isExam(q){return /-14[0-9][0-9]$/.test(q.id||'')}function isDrill(q){return (q.id||'').indexOf('DRILL-')===0}function isCalc(q){var t=((q.k||'')+' '+(q.q||''));return !isPractical(q)&&(isDrill(q)||/計算|利回り|PER|PBR|ROE|可処分所得|必要保障額|建ぺい率|容積率|基礎控除額|法定相続分|現在価値|将来価値|係数|自己資本比率|営業利益率|円換算|年間利子/.test(t))}function isBasic(q){return !isExam(q)&&!isDrill(q)&&!isPractical(q)}function qType(q){if(isPractical(q))return '✍️ 実技・記述';if(isExam(q))return '🧠 本番型';if(isCalc(q))return '🧮 計算・数字';return '📘 基本知識'}function pool(mode,base){var a=base||questions;if(mode==='basic')return a.filter(isBasic);if(mode==='calc')return a.filter(isCalc);if(mode==='exam')return a.filter(isExam);if(mode==='practical')return a.filter(isPractical);return a.slice()}
-function shell(x){return '<div class="hero"><h1>FP2 Quest</h1><p>'+questions.length+'問収録・目標正答率80%</p></div>'+x+'<div class="nav"><button onclick="goHome()">🏠<br>ホーム</button><button onclick="showWrong()">🔥<br>要復習</button><button onclick="showStats()">📊<br>成績</button></div>'}
-function home(){var st=stat(questions),basic=pool('basic').length,calc=pool('calc').length,exam=pool('exam').length,prac=pool('practical').length,msg=st.done<60?'まず60問以上解いて実力判定':st.rate>=80?'🏆 80％到達':'🎯 80％まであと '+(80-st.rate)+'pt';var h='<div class="card"><b>合格力メーター</b><div class="row"><div><span class="muted">進捗</span><br><b>'+st.done+'/'+st.total+'問</b></div><div><span class="muted">正答率</span><br><b>'+st.rate+'%</b></div></div><div class="bar" style="margin-top:12px"><i style="width:'+(st.total?st.done/st.total*100:0)+'%"></i></div><p><b>'+msg+'</b></p><span class="muted">48/60以上を安定して取れる状態を仕上げ目標にします。</span></div>';if(S.last)h+='<button class="btn primary" onclick="resumeLast()">▶ 前回の続きから</button>';h+='<div class="section">🎓 学習モード</div><button class="btn mode" onclick="startMode(\'basic\')">📘 基本知識<div class="muted">'+basic+'問・用語、制度、基本ルールを固める</div></button><button class="btn mode" onclick="startMode(\'calc\')">🧮 計算・数字<div class="muted">'+calc+'問・金融、税、不動産、相続などの計算</div></button><button class="btn mode" onclick="startMode(\'exam\')">🧠 本番型<div class="muted">'+exam+'問・事例、比較、ひっかけ、条件判断</div></button><button class="btn mode" onclick="startMode(\'practical\')">✍️ 実技・記述<div class="muted">'+prac+'問・選択肢なしで数字や用語を入力</div></button><button class="btn" onclick="startMode(\'all\')">📚 全問題を順番に<div class="muted">'+questions.length+'問</div></button><div class="section">📚 範囲から学習</div>';Object.keys(names).forEach(function(d){var qs=questions.filter(function(q){return q.d===d});h+='<button class="btn" onclick="openD(\''+d+'\')"><span class="pill">'+d+'</span> '+names[d]+'<div class="muted">'+qs.length+'問</div></button>'});h+='<div class="section">🎯 合格仕上げ</div><button class="btn primary" onclick="mock60()">📝 本番形式 60問模試<div class="muted" style="color:#dbeafe">6分野×10問・途中で答え合わせなし</div></button>';if(S.mocks.length){var m=S.mocks[S.mocks.length-1];h+='<div class="card"><b>直近の模試</b><p><b>'+m.score+'/60</b>（'+Math.round(m.score/60*100)+'％）</p></div>'}app.innerHTML=shell(h)}window.goHome=home;
-window.startMode=function(mode){var qs=pool(mode);if(!qs.length){alert('対象問題がありません');return}startSession(qs,0,{kind:'study',score:0,label:mode==='basic'?'基本知識':mode==='calc'?'計算・数字':mode==='exam'?'本番型':mode==='practical'?'実技・記述':'全問題',returnHome:true})};
-window.openD=function(d){var h='<div class="head"><button class="back" onclick="goHome()">←</button><h2>'+d+' '+names[d]+'</h2></div>';for(var i=0;i<subs[d].length;i++){var qs=questions.filter(function(q){return q.d===d&&q.s===i}),st=stat(qs);h+='<button class="btn" onclick="openSub(\''+d+'\','+i+')"><b>'+d+pad2(i)+' '+subs[d][i]+'</b><div class="muted">'+(qs.length?st.done+'/'+st.total+'問・正答率 '+st.rate+'% '+(st.done>=5&&st.rate>=80?'✓':''):'問題準備中')+'</div></button>'}app.innerHTML=shell(h)};
-window.openSub=function(d,s){var qs=questions.filter(function(q){return q.d===d&&q.s===s}),st=stat(qs),b=pool('basic',qs).length,c=pool('calc',qs).length,e=pool('exam',qs).length,p=pool('practical',qs).length,h='<div class="head"><button class="back" onclick="openD(\''+d+'\')">←</button><h2>'+subs[d][s]+'</h2></div><div class="card"><b>学習進捗 '+st.done+'/'+st.total+'問</b><div class="bar" style="margin:10px 0"><i style="width:'+(st.total?st.done/st.total*100:0)+'%"></i></div><span class="muted">正答率 '+st.rate+'%・目標80%</span>'+(st.done>=5&&st.rate>=80?'<p class="ok">✓ この範囲は80％到達</p>':'')+'</div>';if(qs.length){h+='<button class="btn primary" onclick="startSubMode(\''+d+'\','+s+',\'all\')">⚡ この範囲を全部 '+qs.length+'問</button>';if(b)h+='<button class="btn" onclick="startSubMode(\''+d+'\','+s+',\'basic\')">📘 基本 '+b+'問</button>';if(c)h+='<button class="btn" onclick="startSubMode(\''+d+'\','+s+',\'calc\')">🧮 計算・数字 '+c+'問</button>';if(e)h+='<button class="btn" onclick="startSubMode(\''+d+'\','+s+',\'exam\')">🧠 本番型 '+e+'問</button>';if(p)h+='<button class="btn" onclick="startSubMode(\''+d+'\','+s+',\'practical\')">✍️ 実技・記述 '+p+'問</button>';h+='<button class="btn danger" onclick="startSubWrong(\''+d+'\','+s+')">🔥 要復習だけ</button>'}else h+='<div class="card">この範囲の問題は準備中です。</div>';app.innerHTML=shell(h)};
-window.startSubMode=function(d,s,mode){var base=questions.filter(function(q){return q.d===d&&q.s===s}),qs=pool(mode,base);if(!qs.length){alert('対象の問題はありません');return}startSession(qs,0,{kind:'study',d:d,s:s,score:0,label:mode==='basic'?'基本':mode==='calc'?'計算・数字':mode==='exam'?'本番型':mode==='practical'?'実技・記述':'範囲学習'})};window.startSubWrong=function(d,s){var qs=questions.filter(function(q){if(q.d!==d||q.s!==s)return false;var a=A(q);return a&&(!a.ok||a.review)});if(!qs.length){alert('要復習の問題はありません');return}startSession(qs,0,{kind:'study',d:d,s:s,score:0,label:'要復習'})};
-var session=null;function startSession(qs,i,meta){session={qs:qs,i:i,kind:meta.kind||'study',d:meta.d,s:meta.s,score:meta.score||0,label:meta.label||'',returnHome:!!meta.returnHome,locked:false,unsure:false,responses:[]};showQ()}
-function answerArea(q){if(q.input)return '<input id="textAnswer" class="answerInput" autocomplete="off" inputmode="text" placeholder="答えを入力"><button class="btn primary" onclick="submitText()">答える</button><button id="unsure" class="choice" onclick="toggleUnsure()">△ 迷ったので要復習にする</button>';return q.c.map(function(c,x){return '<button id="c'+x+'" class="choice" onclick="pick('+x+')">'+(x+1)+'. '+c+'</button>'}).join('')+(session.kind==='study'?'<button id="unknown" class="choice" onclick="pick(-1)">？ わからない</button><button id="unsure" class="choice" onclick="toggleUnsure()">△ 迷ったので要復習にする</button>':'')}
-function showQ(){var q=session.qs[session.i];if(!q)return finish();if(session.kind==='study'){S.last={d:q.d,s:q.s,id:q.id};save()}var mockNote=session.kind==='mock'?'<div class="card"><b>本番モード</b><div class="muted">この60問は途中で正解・解説を表示しません。最後にまとめて採点します。</div></div>':'';app.innerHTML=shell('<div class="head"><button class="back" onclick="goHome()">×</button><div><b>'+(session.label||q.k||'問題')+'</b><div class="muted">'+(session.i+1)+'/'+session.qs.length+'・'+q.id+'</div></div></div>'+mockNote+'<div class="card"><span class="tag">'+qType(q)+'・法令基準 '+(q.law||'2026-04-01')+'</span><div style="font-size:20px;line-height:1.55;font-weight:700">'+q.q+'</div>'+answerArea(q)+'<div id="fb"></div></div>');if(q.input){var ti=document.getElementById('textAnswer');if(ti)ti.focus()}}
-window.toggleUnsure=function(){if(!session||session.kind!=='study')return;session.unsure=!session.unsure;var b=document.getElementById('unsure');if(b){b.className='choice'+(session.unsure?' unsureOn':'');b.innerHTML=session.unsure?'△ 要復習に登録します':'△ 迷ったので要復習にする'}};
-function norm(v){return String(v==null?'':v).replace(/[\s,，]/g,'').replace(/％/g,'%').replace(/－/g,'-').toUpperCase()}
-function feedback(q,ok){S.answers[q.id]={ok:ok,at:Date.now(),review:session.unsure||!ok};save();var ub=document.getElementById('unsure');if(ub)ub.disabled=true;document.getElementById('fb').innerHTML='<div class="card" style="box-shadow:none"><b>'+(ok?'○ 正解':'× 不正解')+'</b>'+(q.input?'<p><b>正答：'+q.display+'</b></p>':'')+(session.unsure?'<p class="warn">△ 正解でも要復習に登録しました</p>':'')+'<p>'+((q.e)||'')+'</p><button class="btn primary" id="next">'+(session.i+1===session.qs.length?'結果を見る':'次へ →')+'</button></div>';document.getElementById('next').onclick=function(){session.i++;session.locked=false;session.unsure=false;showQ()}}
-window.submitText=function(){if(!session||session.locked)return;var q=session.qs[session.i];if(!q.input)return;var el=document.getElementById('textAnswer'),v=el?el.value:'';if(!v.trim()){alert('答えを入力してください');return}session.locked=true;var nv=norm(v),ok=false;for(var i=0;i<q.accept.length;i++){if(nv===norm(q.accept[i])){ok=true;break}}if(ok)session.score++;session.responses.push({id:q.id,text:v,ok:ok});if(el){el.disabled=true;el.className='answerInput '+(ok?'good':'bad')}feedback(q,ok)};
-window.pick=function(x){if(!session||session.locked)return;session.locked=true;var q=session.qs[session.i],ok=x===q.a;if(ok)session.score++;session.responses.push({id:q.id,x:x,ok:ok});if(session.kind==='mock'){session.i++;session.locked=false;showQ();return}for(var j=0;j<q.c.length;j++){var el=document.getElementById('c'+j);if(el){el.disabled=true;if(j===q.a)el.className+=' good';if(j===x&&!ok)el.className+=' bad'}}var u=document.getElementById('unknown');if(u)u.disabled=true;feedback(q,ok)};
-function finish(){if(!session)return home();if(session.kind==='mock'){var score=session.score,rate=Math.round(score/60*100),wrong=0;for(var r=0;r<session.responses.length;r++){var rr=session.responses[r],qq=questions.filter(function(z){return z.id===rr.id})[0];if(qq){S.answers[qq.id]={ok:rr.ok,at:Date.now(),review:!rr.ok};if(!rr.ok)wrong++}}S.mocks.push({score:score,at:Date.now()});if(S.mocks.length>20)S.mocks.shift();save();app.innerHTML=shell('<h2>📝 60問模試 結果</h2><div class="card"><div class="score">'+score+'/60</div><p>正答率 '+rate+'％</p><p><b>'+(score>=48?'🏆 8割到達':score>=36?'✅ 合格基準クリア':'📚 合格基準まであと '+(36-score)+'問')+'</b></p><div class="bar"><i style="width:'+rate+'%"></i></div><p class="muted">不正解 '+wrong+'問は「要復習」に登録しました。</p></div><button class="btn primary" onclick="mock60()">もう一度</button><button class="btn" onclick="showWrong()">🔥 模試の間違いを復習</button>');session=null;return}var score2=session.score,total=session.qs.length,rate2=Math.round(score2/total*100),d=session.d,s=session.s,ret=session.returnHome;session=null;app.innerHTML=shell('<h2>学習結果</h2><div class="card"><div class="score">'+score2+'/'+total+'</div><p>正答率 '+rate2+'％</p><p><b>'+(rate2>=80?'✅ 目標80％クリア':'🎯 80％まであと '+Math.max(0,Math.ceil(total*.8-score2))+'問')+'</b></p></div><button class="btn primary" onclick="'+(ret?'goHome()':"openSub('"+d+"',"+s+")")+'">戻る</button>')}
-window.resumeLast=function(){if(!S.last)return home();var qs=questions.filter(function(q){return q.d===S.last.d&&q.s===S.last.s}),idx=0;for(var i=0;i<qs.length;i++)if(qs[i].id===S.last.id){idx=i;break}if(!qs.length)return home();startSession(qs,idx,{kind:'study',d:S.last.d,s:S.last.s,label:'前回の続き'})};
-window.showWrong=function(){var qs=questions.filter(function(q){var a=A(q);return a&&(!a.ok||a.review)}),h='<h2>🔥 要復習</h2>';if(!qs.length)h+='<div class="card">現在、要復習の問題はありません。</div>';else{h+='<button class="btn primary" onclick="startWrongAll()">要復習 '+qs.length+'問をまとめて解く</button>';qs.slice(0,100).forEach(function(q){var a=A(q);h+='<button class="btn" onclick="jump(\''+q.id+'\')">'+(a&&a.review?'△ ':'× ')+(q.k||q.id)+'<div class="muted">'+names[q.d]+' › '+subs[q.d][q.s]+'</div></button>'})}app.innerHTML=shell(h)};window.startWrongAll=function(){var qs=questions.filter(function(q){var a=A(q);return a&&(!a.ok||a.review)});if(qs.length)startSession(qs,0,{kind:'study',score:0,label:'要復習',returnHome:true})};window.jump=function(id){var q=questions.filter(function(x){return x.id===id})[0];if(q)startSession([q],0,{kind:'study',d:q.d,s:q.s,label:'要復習'})};
-window.showStats=function(){var h='<h2>📊 分野別成績</h2>';Object.keys(names).forEach(function(d){var st=stat(questions.filter(function(q){return q.d===d}));h+='<div class="card"><b>'+d+' '+names[d]+'</b><p>'+st.done+'/'+st.total+'問・正答率 <b>'+st.rate+'%</b></p><div class="bar"><i style="width:'+st.rate+'%"></i></div>'+(st.done>=10&&st.rate>=80?'<p class="ok">✓ 80％到達</p>':'')+'</div>'});h+='<div class="card"><b>合格判定の目安</b><p class="muted">全6分野75％以上＋60問模試48点以上を安定して取ることを目標にします。</p></div>';app.innerHTML=shell(h)};
-window.mock60=function(){var qs=[];['A','B','C','D','E','F'].forEach(function(d){var a=questions.filter(function(q){return q.d===d&&!q.input&&q.c&&q.c.length===4}).slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}qs=qs.concat(a.slice(0,10))});for(var k=qs.length-1;k>0;k--){var z=Math.floor(Math.random()*(k+1)),u=qs[k];qs[k]=qs[z];qs[z]=u}startSession(qs,0,{kind:'mock',score:0,label:'60問模試'})};
-home();
-}catch(e){app.innerHTML='<div class="hero"><h1>FP2 Quest</h1><p>起動エラー</p></div><div class="card"><b>❌ '+String(e)+'</b></div>'}})();</script></body></html>
+var subs={
+A:['FPと倫理','FPと関連法規','ライフプランニングの考え方・手法','社会保険','公的年金','企業年金・個人年金等','年金と税金','ライフプラン策定上の資金計画','中小法人の資金計画','ローンとカード','最新の動向'],
+B:['リスクマネジメント','保険制度全般','生命保険','損害保険','第三分野の保険','リスク管理と保険','最新の動向'],
+C:['マーケット環境の理解','預貯金・金融類似商品等','投資信託','債券投資','株式投資','外貨建商品','保険商品','金融派生商品','ポートフォリオ運用','金融商品と税金','セーフティネット','関連法規','最新の動向'],
+D:['わが国の税制','所得税の仕組み','各種所得の内容','損益通算','所得控除','税額控除','所得税の申告と納付','個人住民税','個人事業税','法人税','法人住民税','法人事業税','消費税','会社・役員間および会社間の税務','決算書と法人税申告書','諸外国の税制度','最新の動向'],
+E:['不動産の見方','不動産の取引','不動産に関する法令上の規制','不動産の取得・保有に係る税金','不動産の譲渡に係る税金','不動産の賃貸','不動産の有効活用','不動産の証券化','最新の動向'],
+F:['贈与と法律','贈与と税金','相続と法律','相続と税金','相続財産の評価（不動産以外）','相続財産の評価（不動産）','不動産の相続対策','相続と保険の活用','事業承継対策','事業と経営','最新の動向']
+};
+
+var S={answers:{},last:null,mocks:[],activity:[],review:{}};
+try{
+ var old=JSON.parse(localStorage.getItem('fp2q')||'{}');
+ if(old.answers)S.answers=old.answers;
+ if(old.last)S.last=old.last;
+ if(old.mocks)S.mocks=old.mocks;
+ if(old.activity)S.activity=old.activity;
+ if(old.review)S.review=old.review;
+}catch(e){}
+function save(){try{localStorage.setItem('fp2q',JSON.stringify(S))}catch(e){}}
+function A(q){return S.answers[q.id]}
+function stat(qs){var d=0,o=0,j,a;for(j=0;j<qs.length;j++){a=A(qs[j]);if(a){d++;if(a.ok)o++}}return{done:d,total:qs.length,rate:d?Math.round(o/d*100):0,correct:o}}
+function pad2(n){n=n+1;return n<10?'0'+n:String(n)}
+function dayKey(ts){var d=new Date(ts),m=d.getMonth()+1,da=d.getDate();return d.getFullYear()+'-'+(m<10?'0'+m:m)+'-'+(da<10?'0'+da:da)}
+function dayOffset(key,offset){var p=key.split('-'),d=new Date(Number(p[0]),Number(p[1])-1,Number(p[2]));d.setDate(d.getDate()+offset);return dayKey(d.getTime())}
+function todayKey(){return dayKey(Date.now())}
+function activityDays(){
+ var x={},j,a;
+ for(j=0;j<S.activity.length;j++){a=S.activity[j];if(a&&a.at)x[dayKey(a.at)]=1}
+ for(var id in S.answers){if(S.answers.hasOwnProperty(id)&&S.answers[id]&&S.answers[id].at)x[dayKey(S.answers[id].at)]=1}
+ return x
+}
+function streak(){
+ var days=activityDays(),t=todayKey(),start=days[t]?t:dayOffset(t,-1),n=0;
+ while(days[start]){n++;start=dayOffset(start,-1)}
+ return n
+}
+function todayIds(){
+ var t=todayKey(),x={},j,a;
+ for(j=0;j<S.activity.length;j++){a=S.activity[j];if(a&&a.at&&dayKey(a.at)===t&&a.id)x[a.id]=1}
+ for(var id in S.answers){if(S.answers.hasOwnProperty(id)){a=S.answers[id];if(a&&a.at&&dayKey(a.at)===t)x[id]=1}}
+ return x
+}
+function todayCount(){var x=todayIds(),n=0;for(var k in x)if(x.hasOwnProperty(k))n++;return n}
+function recordActivity(q,ok){S.activity.push({id:q.id,at:Date.now(),ok:ok});if(S.activity.length>2000)S.activity=S.activity.slice(S.activity.length-2000)}
+function isExam(q){return /-14[0-9][0-9]$/.test(q.id||'')}
+function isDrill(q){return (q.id||'').indexOf('DRILL-')===0}
+function isCalc(q){var t=(q.k||'')+' '+(q.q||'');return isDrill(q)||/計算|利回り|PER|PBR|ROE|可処分所得|必要保障額|建ぺい率|容積率|基礎控除額|法定相続分|現在価値|将来価値|係数|自己資本比率|営業利益率|円換算|外貨換算|年間利子/.test(t)}
+function isBasic(q){return !isExam(q)&&!isDrill(q)}
+function qType(q){if(isExam(q))return '🧠 本番型';if(isCalc(q))return '🧮 計算・数字';return '📘 基本知識'}
+function pool(mode,base){var a=base||questions,out=[],j,q;for(j=0;j<a.length;j++){q=a[j];if(mode==='basic'&&isBasic(q))out.push(q);else if(mode==='calc'&&isCalc(q))out.push(q);else if(mode==='exam'&&isExam(q))out.push(q);else if(mode==='all')out.push(q)}return out}
+function shell(x,sub){
+ var st=stat(questions),lv=Math.floor(st.done/50)+1,sc=streak();
+ return '<div class="hero"><div class="heroTop"><div><h1>FP2 Quest</h1><p class="heroSub">'+(sub||'今日も少しずつ、合格へ。')+'</p></div><span class="status">学科対策</span></div><div class="heroStats"><div class="heroStat"><b>Lv.'+lv+'</b><span>学習レベル</span></div><div class="heroStat"><b>🔥 '+sc+'</b><span>連続学習</span></div><div class="heroStat"><b>'+st.done+'</b><span>解答済み</span></div></div></div>'+x+'<div class="nav"><button onclick="goHome()">🏠<br>ホーム</button><button onclick="showReview()">🔥<br>復習</button><button onclick="showStats()">📊<br>成績</button></div>'
+}
+function dailyPool(){
+ var r=[],u=[],rest=[],j,q,a;
+ for(j=0;j<questions.length;j++){q=questions[j];a=A(q);if((a&&!a.ok)||S.review[q.id])r.push(q);else if(!a)u.push(q);else rest.push(q)}
+ return r.concat(u,rest).slice(0,10)
+}
+function weakestInfo(){
+ var best=null,d,s,qs,st;
+ for(d in subs){if(!subs.hasOwnProperty(d))continue;for(s=0;s<subs[d].length;s++){qs=questions.filter(function(q){return q.d===d&&q.s===s});st=stat(qs);if(st.done>=3&&(!best||st.rate<best.rate))best={d:d,s:s,rate:st.rate,qs:qs}}}
+ if(best)return best;
+ for(d in subs){if(!subs.hasOwnProperty(d))continue;for(s=0;s<subs[d].length;s++){qs=questions.filter(function(q){return q.d===d&&q.s===s});st=stat(qs);if(qs.length&&st.done<qs.length)return{d:d,s:s,rate:null,qs:qs}}}
+ return null
+}
+function roadHTML(){
+ var st=stat(questions),last=S.mocks.length?S.mocks[S.mocks.length-1]:null;
+ var steps=[
+  {ok:st.done>=100,icon:'①',txt:'100問'},
+  {ok:st.done>=300,icon:'②',txt:'300問'},
+  {ok:st.done>=600,icon:'③',txt:'600問'},
+  {ok:last&&last.score>=48,icon:'🏁',txt:'模試48'}
+ ];
+ var h='<div class="road">';
+ for(var j=0;j<steps.length;j++)h+='<div class="roadStep '+(steps[j].ok?'done':'')+'"><b>'+steps[j].icon+'</b>'+steps[j].txt+'</div>';
+ return h+'</div>'
+}
+function home(){
+ var st=stat(questions),tc=todayCount(),goal=Math.min(tc,10),remain=Math.max(0,10-tc),weak=weakestInfo(),lv=Math.floor(st.done/50)+1,next=50-(st.done%50);
+ var msg=tc>=10?'🎉 今日の目標達成！':tc>=5?'いい流れです。あと'+remain+'問！':tc>0?'ナイススタート。あと'+remain+'問。':'まず3問だけでもOK。始めると続きます。';
+ var h='';
+ if(tc>=10)h+='<div class="card celebrate"><div class="big">🎉 今日の10問クリア！</div><p class="muted">今日はもう十分前進しています。余力があれば復習へ。</p></div>';
+ h+='<div class="card goal"><div class="goalTop"><div><b>今日の目標</b><div class="goalNum">'+goal+' / 10</div></div><div class="goalBadge">'+(tc>=10?'達成！':'あと '+remain+'問')+'</div></div><div class="bar"><i style="width:'+Math.min(100,tc*10)+'%"></i></div><p><b>'+msg+'</b></p><button class="btn primary cta" onclick="startDaily()"><div class="ctaTitle">⚡ 今日の10問をはじめる</div><div class="ctaSub">間違い→未回答の順で、今やるべき10問を自動選択</div></button></div>';
+ if(S.last)h+='<button class="btn secondary cta" onclick="resumeLast()"><div class="ctaTitle">▶ 前回の続きから</div><div class="ctaSub">止めたところから、そのまま再開</div></button>';
+ if(weak){
+  var wlabel=weak.rate===null?'まだ手薄な範囲':'現在の弱点・正答率 '+weak.rate+'%';
+  h+='<button class="btn soft cta" onclick="startWeak()"><div class="ctaTitle">🎯 苦手対策 5問</div><div class="ctaSub">'+names[weak.d]+' › '+subs[weak.d][weak.s]+'・'+wlabel+'</div></button>'
+ }
+ h+='<div class="section">📈 合格ロード <small>FP2 Quest内の学習目標</small></div><div class="card"><div class="domainMeta"><div><b>Lv.'+lv+'</b><div class="muted">次のレベルまであと'+next+'問</div></div><div class="muted">'+st.done+'/'+st.total+'問<br>正答率 '+st.rate+'%</div></div><div class="bar" style="margin-top:10px"><i style="width:'+((st.done%50)/50*100)+'%"></i></div>'+roadHTML()+'</div>';
+ h+='<div class="section">🎓 学習モード</div><div class="grid2"><button class="btn mode" onclick="startMode(\'basic\')">📘 基本知識<div class="muted">'+pool('basic').length+'問</div></button><button class="btn mode calc" onclick="startMode(\'calc\')">🧮 計算・数字<div class="muted">'+pool('calc').length+'問</div></button></div><button class="btn mode exam" onclick="startMode(\'exam\')">🧠 本番型<div class="muted">'+pool('exam').length+'問・事例、比較、条件判断</div></button>';
+ h+='<div class="section">📚 範囲から学習</div>';
+ for(var d in names){if(names.hasOwnProperty(d)){var qs=questions.filter((function(dd){return function(q){return q.d===dd}})(d)),ds=stat(qs);h+='<button class="btn" onclick="openD(\''+d+'\')"><div class="domainMeta"><div><span class="pill">'+d+'</span><b>'+names[d]+'</b></div><div class="muted">'+ds.done+'/'+ds.total+'問<br>'+ds.rate+'%</div></div></button>'}}
+ h+='<div class="section">📝 実力チェック</div><button class="btn primary cta" onclick="mock60()"><div class="ctaTitle">60問模試</div><div class="ctaSub">6分野×10問・途中で答え合わせなし</div></button>';
+ if(S.mocks.length){var m=S.mocks[S.mocks.length-1];h+='<div class="card"><b>直近の模試</b><p class="score" style="font-size:30px;margin:8px 0">'+m.score+'/60</p><span class="muted">'+(m.score>=48?'8割到達':m.score>=36?'合格基準クリア':'36点まであと'+(36-m.score)+'問')+'</span></div>'}
+ app.innerHTML=shell(h,'今日の10問で、ちゃんと前進。')
+}
+window.goHome=home;
+
+var session=null;
+function startSession(qs,meta){
+ if(!qs||!qs.length){alert('対象の問題はありません');return}
+ session={qs:qs,i:0,kind:meta.kind||'study',score:0,label:meta.label||'',d:meta.d,s:meta.s,returnHome:!!meta.returnHome,locked:false,marked:{}};
+ showQ()
+}
+window.startDaily=function(){startSession(dailyPool(),{kind:'study',label:'今日の10問',returnHome:true})};
+window.startWeak=function(){var w=weakestInfo();if(!w)return;var arr=[],j,q,a;for(j=0;j<w.qs.length;j++){q=w.qs[j];a=A(q);if((a&&!a.ok)||S.review[q.id]||!a)arr.push(q)}if(arr.length<5)arr=arr.concat(w.qs.filter(function(q){return arr.indexOf(q)<0}));startSession(arr.slice(0,5),{kind:'study',label:'苦手対策',d:w.d,s:w.s,returnHome:true})};
+window.startMode=function(mode){startSession(pool(mode),{kind:'study',label:mode==='basic'?'基本知識':mode==='calc'?'計算・数字':'本番型',returnHome:true})};
+
+window.openD=function(d){
+ var h='<div class="head"><button class="back" onclick="goHome()">←</button><h2>'+d+' '+names[d]+'</h2></div>',s,qs,st;
+ for(s=0;s<subs[d].length;s++){qs=questions.filter((function(dd,ss){return function(q){return q.d===dd&&q.s===ss}})(d,s));st=stat(qs);h+='<button class="btn" onclick="openSub(\''+d+'\','+s+')"><div class="domainMeta"><div><b>'+d+pad2(s)+' '+subs[d][s]+'</b></div><div class="muted">'+(qs.length?st.done+'/'+st.total+'問<br>'+st.rate+'%':'準備中')+'</div></div></button>'}
+ app.innerHTML=shell(h,names[d])
+};
+window.openSub=function(d,s){
+ var qs=questions.filter(function(q){return q.d===d&&q.s===s}),st=stat(qs),b=pool('basic',qs).length,c=pool('calc',qs).length,e=pool('exam',qs).length;
+ var h='<div class="head"><button class="back" onclick="openD(\''+d+'\')">←</button><h2>'+subs[d][s]+'</h2></div><div class="card"><div class="domainMeta"><b>進捗 '+st.done+'/'+st.total+'</b><b>'+st.rate+'%</b></div><div class="bar" style="margin-top:10px"><i style="width:'+(st.total?st.done/st.total*100:0)+'%"></i></div>'+(st.done>=5&&st.rate>=80?'<p class="ok">✓ 80％到達</p>':'')+'</div>';
+ if(qs.length){h+='<button class="btn primary" onclick="startSub(\''+d+'\','+s+',\'all\')">⚡ この範囲を学習</button><div class="grid2">'+(b?'<button class="btn mode" onclick="startSub(\''+d+'\','+s+',\'basic\')">📘 基本 '+b+'問</button>':'')+(c?'<button class="btn mode calc" onclick="startSub(\''+d+'\','+s+',\'calc\')">🧮 計算 '+c+'問</button>':'')+'</div>'+(e?'<button class="btn mode exam" onclick="startSub(\''+d+'\','+s+',\'exam\')">🧠 本番型 '+e+'問</button>':'')+'<button class="btn soft" onclick="startSub(\''+d+'\','+s+',\'review\')">🔥 要復習だけ</button>'}else h+='<div class="card">この範囲の問題は準備中です。</div>';
+ app.innerHTML=shell(h,subs[d][s])
+};
+window.startSub=function(d,s,mode){
+ var base=questions.filter(function(q){return q.d===d&&q.s===s}),qs;
+ if(mode==='review')qs=base.filter(function(q){var a=A(q);return(a&&!a.ok)||S.review[q.id]});
+ else qs=mode==='all'?base:pool(mode,base);
+ startSession(qs,{kind:'study',label:subs[d][s],d:d,s:s})
+};
+
+function showQ(){
+ if(!session)return home();
+ if(session.i>=session.qs.length)return finishSession();
+ var q=session.qs[session.i],review=!!S.review[q.id];
+ if(session.kind==='study'){S.last={d:q.d,s:q.s,id:q.id};save()}
+ var h='<div class="head"><button class="back" onclick="goHome()">×</button><div><b>'+session.label+'</b><div class="muted">'+(session.i+1)+' / '+session.qs.length+'</div></div></div><div class="card"><span class="tag">'+qType(q)+'</span><span class="tag">'+q.id+'</span><div class="qtext">'+q.q+'</div>';
+ for(var j=0;j<q.c.length;j++)h+='<button id="c'+j+'" class="choice" onclick="pick('+j+')">'+(j+1)+'. '+q.c[j]+'</button>';
+ if(session.kind==='study')h+='<button id="reviewBtn" class="choice '+(review?'reviewOn':'')+'" onclick="toggleReview()">⭐ '+(review?'復習リストに追加済み':'あとで復習する')+'</button>';
+ h+='<div id="fb"></div></div>';
+ app.innerHTML=shell(h,session.kind==='mock'?'本番モード・答え合わせは最後':'1問ずつ、確実に。')
+}
+window.toggleReview=function(){
+ if(!session)return;var q=session.qs[session.i];S.review[q.id]=!S.review[q.id];if(!S.review[q.id])delete S.review[q.id];save();var b=document.getElementById('reviewBtn');if(b){b.className='choice '+(S.review[q.id]?'reviewOn':'');b.innerHTML='⭐ '+(S.review[q.id]?'復習リストに追加済み':'あとで復習する')}
+};
+window.pick=function(x){
+ if(!session||session.locked)return;session.locked=true;var q=session.qs[session.i],ok=x===q.a,j,el;
+ if(session.kind==='mock'){if(ok)session.score++;session.i++;session.locked=false;showQ();return}
+ S.answers[q.id]={ok:ok,at:Date.now()};recordActivity(q,ok);if(!ok)S.review[q.id]=true;save();
+ for(j=0;j<q.c.length;j++){el=document.getElementById('c'+j);if(el){el.disabled=true;if(j===q.a)el.className+=' good';if(j===x&&!ok)el.className+=' bad'}}
+ el=document.getElementById('reviewBtn');if(el)el.disabled=true;
+ document.getElementById('fb').innerHTML='<div class="feedback"><b>'+(ok?'○ 正解！':'× 不正解')+'</b><p>'+((q.e)||'')+'</p><button class="btn primary" id="next">'+(session.i+1===session.qs.length?'結果を見る':'次へ →')+'</button></div>';
+ document.getElementById('next').onclick=function(){session.i++;session.locked=false;showQ()}
+};
+function finishSession(){
+ if(!session)return home();
+ if(session.kind==='mock'){
+  var score=session.score,rate=Math.round(score/60*100);S.mocks.push({score:score,at:Date.now()});if(S.mocks.length>20)S.mocks.shift();save();session=null;
+  app.innerHTML=shell('<h2>📝 60問模試 結果</h2><div class="card"><div class="score">'+score+'/60</div><p>正答率 '+rate+'％</p><p><b>'+(score>=48?'🏆 8割到達':score>=36?'✅ 合格基準クリア':'📚 合格基準まであと '+(36-score)+'問')+'</b></p><div class="bar"><i style="width:'+rate+'%"></i></div><p class="muted">合格基準は36/60。FP2 Questでは48/60を仕上げ目標にしています。</p></div><button class="btn primary" onclick="mock60()">もう一度挑戦</button>','模試、おつかれさまでした。');return
+ }
+ var tc=todayCount(),label=session.label,d=session.d,s=session.s,ret=session.returnHome;session=null;
+ if(tc>=10&&label==='今日の10問'){app.innerHTML=shell('<div class="card celebrate"><div class="big">🎉 今日の目標達成！</div><p>10問クリア。今日の学習はこれで合格です。</p></div><button class="btn primary" onclick="goHome()">ホームへ</button><button class="btn soft" onclick="showReview()">間違いを復習する</button>','よく進みました。');return}
+ if(ret||d===undefined||s===undefined)return home();
+ openSub(d,s)
+}
+window.resumeLast=function(){
+ if(!S.last)return home();var qs=questions.filter(function(q){return q.d===S.last.d&&q.s===S.last.s}),idx=0,j;
+ for(j=0;j<qs.length;j++)if(qs[j].id===S.last.id){idx=j;break}
+ qs=qs.slice(idx);startSession(qs,{kind:'study',label:subs[S.last.d][S.last.s],d:S.last.d,s:S.last.s})
+};
+window.showReview=function(){
+ var qs=questions.filter(function(q){var a=A(q);return(a&&!a.ok)||S.review[q.id]}),h='<div class="head"><button class="back" onclick="goHome()">←</button><h2>🔥 要復習</h2></div>';
+ if(!qs.length)h+='<div class="card">今のところ要復習はありません。いい感じです。</div>';
+ else{h+='<button class="btn primary" onclick="startReviewAll()">要復習 '+qs.length+'問を解く</button>';for(var j=0;j<Math.min(100,qs.length);j++){var q=qs[j];h+='<button class="btn" onclick="jump(\''+q.id+'\')"><b>'+q.k+'</b><div class="muted">'+names[q.d]+' › '+subs[q.d][q.s]+'</div></button>'}}
+ app.innerHTML=shell(h,'間違いは、伸びしろです。')
+};
+window.startReviewAll=function(){var qs=questions.filter(function(q){var a=A(q);return(a&&!a.ok)||S.review[q.id]});startSession(qs,{kind:'study',label:'要復習',returnHome:true})};
+window.jump=function(id){for(var j=0;j<questions.length;j++)if(questions[j].id===id){startSession([questions[j]],{kind:'study',label:'要復習',returnHome:true});return}};
+window.showStats=function(){
+ var h='<div class="head"><button class="back" onclick="goHome()">←</button><h2>📊 成績</h2></div>',d,qs,st,w=weakestInfo();
+ if(w)h+='<div class="card goal"><b>今の重点</b><p><b>'+names[w.d]+' › '+subs[w.d][w.s]+'</b></p><span class="muted">'+(w.rate===null?'まだ手薄な範囲です。':'正答率 '+w.rate+'％。ここを上げると全体が伸びます。')+'</span></div>';
+ for(d in names){if(names.hasOwnProperty(d)){qs=questions.filter((function(dd){return function(q){return q.d===dd}})(d));st=stat(qs);h+='<div class="card"><div class="domainMeta"><b>'+d+' '+names[d]+'</b><b>'+st.rate+'%</b></div><p class="muted">'+st.done+'/'+st.total+'問</p><div class="bar"><i style="width:'+st.rate+'%"></i></div></div>'}}
+ h+='<div class="card"><b>学習の見方</b><p class="muted">問題数を増やすだけでなく、苦手分野の正答率を上げ、60問模試で48点以上を安定させることを目標にします。</p></div>';
+ app.innerHTML=shell(h,'数字で伸びが見えると、続けやすい。')
+};
+window.mock60=function(){
+ var qs=[],ds=['A','B','C','D','E','F'],d,a,j,k,t;
+ for(d=0;d<ds.length;d++){a=questions.filter((function(dd){return function(q){return q.d===dd&&q.c&&q.c.length===4}})(ds[d])).slice();for(j=a.length-1;j>0;j--){k=Math.floor(Math.random()*(j+1));t=a[j];a[j]=a[k];a[k]=t}qs=qs.concat(a.slice(0,10))}
+ for(j=qs.length-1;j>0;j--){k=Math.floor(Math.random()*(j+1));t=qs[j];qs[j]=qs[k];qs[k]=t}
+ startSession(qs,{kind:'mock',label:'60問模試'})
+};
+home()
+}catch(e){
+ app.innerHTML='<div class="hero"><h1>FP2 Quest</h1><p class="heroSub">起動エラー</p></div><div class="card"><b>❌ '+String(e)+'</b><p class="muted">この画面をスクリーンショットして送ってください。</p></div>'
+}
+})();
+</script>
+</body>
+</html>
