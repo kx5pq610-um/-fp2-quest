@@ -21,25 +21,3 @@ const extraQuestions8=[
 {id:'F04-201',d:'F',s:3,q:'法定相続人が3人の場合、相続税の基礎控除額はいくらか。',c:['3,600万円','4,200万円','4,800万円','5,400万円'],a:2,e:'3,000万円＋600万円×3人＝4,800万円です。',k:'相続税基礎控除',law:'2026-04-01'},
 {id:'F04-202',d:'F',s:3,q:'相続税の基礎控除額の算式として正しいものはどれか。',c:['3,000万円＋600万円×法定相続人の数','5,000万円＋1,000万円×法定相続人の数','1,000万円×法定相続人の数','3,000万円のみ'],a:0,e:'相続税の基礎控除額は3,000万円＋600万円×法定相続人の数です。',k:'相続税基礎控除',law:'2026-04-01'}
 ];
-(function(){
-  function getText(path){
-    var x=new XMLHttpRequest();
-    x.open('GET',path+'?safe=19',false);
-    x.send(null);
-    if((x.status>=200&&x.status<300)||x.status===0)return x.responseText;
-    throw new Error('load failed: '+path+' status='+x.status);
-  }
-  try{
-    var code='';
-    code+=getText('questions-pack9.js')+'\n';
-    code+=getText('questions-pack10.js')+'\n';
-    code+=getText('questions-pack11.js')+'\n';
-    code+=getText('questions-pack12.js')+'\n';
-    code+='extraQuestions8.push(...extraQuestions9,...extraQuestions10,...extraQuestions11,...extraQuestions12);\n';
-    code+=getText('questions-pack13.js')+'\n';
-    code+=getText('questions-pack14.js')+'\n';
-    eval(code);
-  }catch(err){
-    console.error('FP2 tail loader failed',err);
-  }
-})();
